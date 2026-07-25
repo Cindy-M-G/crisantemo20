@@ -1,0 +1,721 @@
+/*==========================================
+        MAGIC SHOP - STYLE.CSS
+              PARTE 1
+==========================================*/
+
+/*========== RESET ==========*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#090513;
+    color:#fff;
+    overflow-x:hidden;
+    min-height:100vh;
+    position:relative;
+}
+
+/*========== FONDO ==========*/
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at 15% 20%,rgba(155,90,255,.28),transparent 30%),
+        radial-gradient(circle at 85% 80%,rgba(80,30,180,.25),transparent 35%),
+        linear-gradient(180deg,#05030a,#12081d,#05030a);
+    z-index:-5;
+}
+
+/*========== ESTRELLAS ==========*/
+
+#stars,
+#particles{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+#stars{z-index:-4;}
+#particles{z-index:-3;}
+
+.star{
+    position:absolute;
+    background:#fff;
+    border-radius:50%;
+    animation:twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{
+        opacity:.2;
+        transform:scale(.8);
+    }
+    to{
+        opacity:1;
+        transform:scale(1.6);
+    }
+}
+
+/*========== PARTÍCULAS ==========*/
+
+.particle{
+    position:absolute;
+    color:#c182ff;
+    opacity:.35;
+    animation:float 12s linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(120vh);
+    }
+    to{
+        transform:translateY(-120vh);
+    }
+}
+
+/*========== PANTALLA INICIAL ==========*/
+
+#welcome{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px;
+    transition:.8s;
+}
+
+#welcome.hide{
+    opacity:0;
+    transform:scale(.95);
+    pointer-events:none;
+}
+
+.title{
+    font-size:58px;
+    font-weight:700;
+    margin-bottom:15px;
+    text-shadow:0 0 18px #9b5dff;
+}
+
+.subtitle{
+    color:#d9c6ff;
+    font-size:18px;
+    margin-bottom:60px;
+    max-width:600px;
+}
+
+/*========== SOBRE ==========*/
+
+.envelope{
+    position:relative;
+    width:420px;
+    height:270px;
+    perspective:1600px;
+    animation:floatEnvelope 5s ease-in-out infinite;
+}
+
+@keyframes floatEnvelope{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-12px);
+    }
+}
+
+/*========== BASE ==========*/
+
+.cover{
+    position:absolute;
+    inset:0;
+    border-radius:12px;
+    background:linear-gradient(145deg,#8d42ff,#5b1fb6);
+    overflow:hidden;
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.45),
+        0 0 40px rgba(140,70,255,.35);
+}
+
+.cover::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,rgba(255,255,255,.18),transparent);
+}
+
+.cover::after{
+    content:"";
+    position:absolute;
+    top:-150%;
+    left:-60%;
+    width:40%;
+    height:400%;
+    background:rgba(255,255,255,.18);
+    transform:rotate(25deg);
+    animation:shine 5s linear infinite;
+}
+
+@keyframes shine{
+    from{
+        left:-60%;
+    }
+    to{
+        left:160%;
+    }
+}
+
+
+/*==========================================
+        MAGIC SHOP - STYLE.CSS
+              PARTE 2
+==========================================*/
+
+/*========== TAPA DEL SOBRE ==========*/
+
+.flap{
+    position:absolute;
+    inset:0 auto auto 0;
+    width:100%;
+    height:145px;
+    background:linear-gradient(180deg,#9c63ff,#6d31de);
+    clip-path:polygon(0 0,50% 100%,100% 0);
+    transform-origin:top;
+    transition:1s ease;
+    z-index:15;
+}
+
+/*========== CARTA INTERNA ==========*/
+
+.letter{
+    position:absolute;
+    left:5%;
+    bottom:10px;
+    width:90%;
+    height:220px;
+    background:#fff;
+    border-radius:8px;
+    overflow:hidden;
+    transition:1s ease;
+    z-index:5;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.paper{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+    color:#555;
+    text-align:center;
+    background:
+        linear-gradient(#ffffff,#fbfbfb);
+}
+
+.paper h2{
+    font-size:55px;
+    margin-bottom:15px;
+}
+
+.paper p{
+    color:#666;
+    font-size:17px;
+    line-height:1.7;
+}
+
+/*========== CORAZÓN ==========*/
+
+.heart{
+    position:absolute;
+    left:50%;
+    bottom:18px;
+    transform:translateX(-50%);
+    width:82px;
+    height:82px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:34px;
+    color:#fff;
+    z-index:30;
+    user-select:none;
+    background:radial-gradient(circle at 30% 30%,#d67eff,#7d1fb8 70%);
+    border:3px solid #e6c7ff;
+    box-shadow:
+        0 0 25px rgba(140,70,255,.85),
+        inset 0 0 15px rgba(255,255,255,.25);
+    animation:heartbeat 1.4s infinite;
+    transition:.3s;
+}
+
+.heart:hover{
+    transform:translateX(-50%) scale(1.08);
+    box-shadow:
+        0 0 35px rgba(170,90,255,.95),
+        inset 0 0 20px rgba(255,255,255,.3);
+}
+
+@keyframes heartbeat{
+
+    0%,100%{
+        transform:translateX(-50%) scale(1);
+    }
+
+    25%{
+        transform:translateX(-50%) scale(1.12);
+    }
+
+    50%{
+        transform:translateX(-50%) scale(.94);
+    }
+
+    75%{
+        transform:translateX(-50%) scale(1.08);
+    }
+
+}
+
+/*========== APERTURA DEL SOBRE ==========*/
+
+.envelope.open .flap{
+    transform:rotateX(180deg);
+}
+
+.envelope.open .letter{
+    transform:translateY(-230px);
+}
+
+/*========== BRILLO ==========*/
+
+.envelope::after{
+    content:"";
+    position:absolute;
+    inset:-8px;
+    border-radius:15px;
+    background:linear-gradient(135deg,
+        rgba(255,255,255,.08),
+        transparent,
+        rgba(255,255,255,.08));
+    z-index:-1;
+    filter:blur(12px);
+    opacity:.8;
+}
+
+/*========== SOMBRA ==========*/
+
+.envelope::before{
+    content:"";
+    position:absolute;
+    width:70%;
+    height:20px;
+    left:15%;
+    bottom:-22px;
+    border-radius:50%;
+    background:rgba(0,0,0,.35);
+    filter:blur(12px);
+    z-index:-2;
+}
+
+
+/*==========================================
+        MAGIC SHOP - STYLE.CSS
+              PARTE 3
+==========================================*/
+
+/*========== CARTA PRINCIPAL ==========*/
+
+#letterSection{
+    display:none;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:50px 20px;
+}
+
+#letterSection.show{
+    display:flex;
+    animation:fadeLetter .9s ease;
+}
+
+@keyframes fadeLetter{
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.letterCard{
+    width:min(900px,95%);
+    padding:55px;
+    border-radius:28px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(22px);
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.35),
+        0 0 35px rgba(140,70,255,.35);
+    animation:cardAppear 1s ease;
+}
+
+@keyframes cardAppear{
+    from{
+        opacity:0;
+        transform:scale(.94);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+/*========== TÍTULO ==========*/
+
+.letterCard h1{
+    text-align:center;
+    font-family:'Dancing Script',cursive;
+    font-size:58px;
+    color:#f6ebff;
+    margin-bottom:35px;
+    text-shadow:0 0 15px rgba(200,160,255,.4);
+}
+
+/*========== TEXTO ==========*/
+
+#typedText{
+    min-height:360px;
+    white-space:pre-line;
+    line-height:1;
+    font-size:19px;
+    color:#f5efff;
+    text-align:justify;
+}
+
+/*========== BOTÓN ==========*/
+
+#galleryButton{
+    display:none;
+    margin:45px auto 0;
+    padding:16px 40px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(135deg,#8d42ff,#b36bff);
+    color:#fff;
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.35s;
+    box-shadow:0 10px 25px rgba(141,66,255,.35);
+}
+
+#galleryButton:hover{
+    transform:translateY(-4px) scale(1.05);
+    box-shadow:0 15px 35px rgba(141,66,255,.55);
+}
+
+#galleryButton:active{
+    transform:scale(.97);
+}
+
+
+/*==========================================
+        MAGIC SHOP - STYLE.CSS
+              PARTE 4
+==========================================*/
+
+/*========== GALERÍA ==========*/
+
+#gallery{
+    display:none;
+    min-height:100vh;
+    padding:80px 40px;
+}
+
+.galleryTitle{
+    text-align:center;
+    font:700 60px 'Dancing Script',cursive;
+    margin-bottom:60px;
+    color:#f7ebff;
+    text-shadow:0 0 15px rgba(180,120,255,.4);
+}
+
+.photos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:35px;
+}
+
+/*========== POLAROIDS ==========*/
+
+.photo{
+    opacity:0;
+    background:#fff;
+    padding:12px 12px 30px;
+    border-radius:6px;
+    box-shadow:0 20px 45px rgba(0,0,0,.45);
+    transform:translateY(-700px) rotate(-20deg) scale(.6);
+    transition:.35s;
+}
+
+.photo img{
+    width:100%;
+    display:block;
+    border-radius:4px;
+}
+
+.photo.show{
+    animation:photoDrop .9s forwards;
+}
+
+@keyframes photoDrop{
+
+    0%{
+        opacity:0;
+        transform:translateY(-700px) rotate(-25deg) scale(.5);
+    }
+
+    60%{
+        opacity:1;
+        transform:translateY(20px) rotate(8deg) scale(1.05);
+    }
+
+    80%{
+        transform:translateY(-10px) rotate(-3deg);
+    }
+
+    100%{
+        opacity:1;
+        transform:translateY(0) rotate(0) scale(1);
+    }
+
+}
+
+.photo:hover{
+    transform:translateY(-10px) scale(1.05) rotate(1deg);
+    box-shadow:0 30px 60px rgba(0,0,0,.55);
+}
+
+/*========== MENSAJE FINAL ==========*/
+
+.finalMessage{
+    margin-top:100px;
+    text-align:center;
+}
+
+.finalMessage h2{
+    font:700 55px 'Dancing Script',cursive;
+    margin-bottom:20px;
+    color:#f5e9ff;
+}
+
+.finalMessage p{
+    max-width:800px;
+    margin:auto;
+    line-height:2;
+    font-size:19px;
+    color:#efe6ff;
+}
+
+/*========== BOTONES ==========*/
+
+#restart,
+#musicButton{
+    border:none;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#restart{
+    display:inline-block;
+    margin-top:45px;
+    padding:15px 40px;
+    border-radius:40px;
+    background:linear-gradient(135deg,#8d42ff,#b36bff);
+    color:#fff;
+    font-size:18px;
+    font-weight:600;
+    box-shadow:0 10px 25px rgba(141,66,255,.35);
+}
+
+#restart:hover{
+    transform:translateY(-4px) scale(1.05);
+    box-shadow:0 18px 35px rgba(141,66,255,.55);
+}
+
+#musicButton{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#ffffff,#836bff);
+    color:#fff;
+    font-size:28px;
+    box-shadow:0 10px 25px rgba(141,66,255,.8);
+    z-index:999;
+}
+
+#musicButton:hover{
+    transform:scale(1.1);
+}
+
+
+#musicButton2{
+    position:fixed;
+    right:25px;
+    bottom:120px;
+    width:68px;
+    height:68px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#ffffff,#836bff);
+    color:#fff;
+    font-size:28px;
+    box-shadow:none;
+    z-index:999;
+    border:none;
+}
+
+/*========== SCROLL ==========*/
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#12081d;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#8d42ff;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#b36bff;
+}
+
+/*========== RESPONSIVE ==========*/
+
+@media(max-width:900px){
+
+    .letterCard{
+        padding:35px;
+    }
+
+    .letterCard h1{
+        font-size:45px;
+    }
+
+    #typedText{
+        font-size:17px;
+        min-height:300px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .title{
+        font-size:40px;
+    }
+
+    .subtitle{
+        font-size:16px;
+    }
+
+    .envelope{
+        width:320px;
+        height:210px;
+    }
+
+    .letter{
+        height:170px;
+    }
+
+    .paper h2{
+        font-size:42px;
+    }
+
+    .heart{
+        width:65px;
+        height:65px;
+        font-size:28px;
+    }
+
+    .galleryTitle{
+        font-size:42px;
+    }
+
+    .finalMessage h2{
+        font-size:42px;
+    }
+
+    .photos{
+        grid-template-columns:1fr;
+    }
+
+    #musicButton{
+        width:58px;
+        height:58px;
+        font-size:24px;
+    }
+
+}
+
+@media(max-width:480px){
+
+    .title{
+        font-size:34px;
+    }
+
+    .subtitle{
+        margin-bottom:40px;
+    }
+
+    .envelope{
+        width:280px;
+        height:190px;
+    }
+
+    .letterCard{
+        padding:25px;
+    }
+
+    .letterCard h1{
+        font-size:38px;
+    }
+
+    #typedText{
+        font-size:16px;
+        line-height:1.8;
+    }
+
+    #galleryButton,
+    #restart{
+        width:100%;
+    }
+
+}
